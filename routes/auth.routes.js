@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const UserModel = require("../models/User.model");
-
+const RestauranteModel = require("../models/Restaurante.model")
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const isAuthenticated = require("../middleware/isAuthenticated");
@@ -111,14 +111,36 @@ router.get("/verify", isAuthenticated, (req,res,next) => {
     // 1. Checkeamos que el token es valido
     //console.log("payload: ", req.payload); // similar al req.session.user
     console.log("Pasando por la ruta, todo bien con el middleware");
-    res.json(req.payload);
 
 
     // 2. Enviar al front end la info del usuario del token
+    res.json(req.payload);
 
 
 
 })
+
+// //? PATCH "/api/auth/visitado/:id" => guarda el restaurante en 
+// router.patch("/visitado/:id", isAuthenticated, async (req,res,next) => {
+
+//     const { id } = req.params
+//     const { identificador, password } = req.body;
+
+//     try {
+//         const restaurante = await RestauranteModel.findById(id).populate("ciudad")
+//         console.log("isauthe: ", identificador)
+//         // console.log(restaurante)
+//         // await UserModel.findByIdAndUpdate()
+
+
+
+//     } catch (error) {
+        
+//     }
+
+
+
+// })
 
 
 module.exports = router;
