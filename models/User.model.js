@@ -25,7 +25,15 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    visitado: [{
+      type: Schema.Types.ObjectId,
+      ref: "restaurante",
+    }],
+    pendiente: [{
+      type: Schema.Types.ObjectId,
+      ref: "restaurante",
+    }]
      
   },
   {

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const RestauranteModel = require("../models/Restaurante.model");
 const CiudadModel = require("../models/Ciudad.model");
+const UserModel = require("../models/User.model");
 
 // rutas de restaurantes
 
@@ -137,8 +138,6 @@ router.delete("/:id", async (req,res,next) => {
         next(error);
     }
 })
-
-
 
 
 //? GET "/api/restaurantes/id" => muestra detalle de restaurante
