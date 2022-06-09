@@ -17,6 +17,7 @@ router.get("/:ciudad", async (req, res, next) => {
     try {
         // const foundCiudad = await CiudadModel.findOne({'nombre': estaCiudad});
         // console.log("foundCiudad:", foundCiudad)
+        //const allRest = await RestauranteModel.find({ciudad:estaCiudad}).populate("ciudad")
         const allRest = await RestauranteModel.find().populate("ciudad")
 
         //console.log("allrest: ", allRest);
@@ -24,8 +25,8 @@ router.get("/:ciudad", async (req, res, next) => {
 
         const filteredArr = allRest.filter((eachRest) => {
             // console.log("filtered function")
-            console.log("ciudad eachrest: ", eachRest.ciudad)
-            console.log("===================", eachRest.ciudad.nombre === estaCiudad);
+            // console.log("ciudad eachrest: ", eachRest.ciudad)
+            // console.log("===================", eachRest.ciudad.nombre === estaCiudad);
             if (eachRest.ciudad.nombre == estaCiudad) {
                 //console.log("eachRest ciudad nombre: ", eachRest.ciudad.nombre);
                 //console.log("eachRest: ", eachRest);
@@ -43,7 +44,7 @@ router.get("/:ciudad", async (req, res, next) => {
         if (filteredArr.length > 0) {
             res.json(filteredArr)
         } else {
-            res.json( {errorMessage: "No hay restaurantes en esta ciudad"} )
+            res.status(400).json( {errorMessage: "No hay restaurantes en esta ciudad"} )
         }       
 
     } catch (error) {
@@ -57,7 +58,7 @@ router.post("/add-restaurante", async (req,res,next) => {
 
     const { nombre, imagen, direccion, ciudad, puntuacion } = req.body;
 
-    console.log('ciudad: ', ciudad);
+    // console.log('ciudad: ', ciudad);
     // console.log(req.body);
 
     if (!nombre || !direccion || puntuacion === undefined || ciudad === null) {
@@ -132,8 +133,7 @@ router.delete("/:id", async (req,res,next) => {
 
     try {
         await RestauranteModel.findByIdAndDelete(id)
-        res.json("El restaurante ha sido borrado"); //! no importa lo que enviemos, siempre hay que dar una respuesta, si no hacemos esto, se queda en sending request, borra el elemento pero en el frontend se queda "pensando"
-        
+        res.json("El restaurante ha sido borrado"); 
     } catch (error) {
         next(error);
     }

@@ -28,11 +28,11 @@ const userSchema = new Schema(
     },
     visitado: [{
       type: Schema.Types.ObjectId,
-      ref: "restaurante",
+      ref: "restaurante"
     }],
     pendiente: [{
       type: Schema.Types.ObjectId,
-      ref: "restaurante",
+      ref: "restaurante"
     }]
      
   },

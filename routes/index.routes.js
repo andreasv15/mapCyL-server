@@ -16,6 +16,8 @@ router.use("/restaurantes", restaurantesRoutes);
 const ciudadesRoutes = require("./ciudad.routes.js");
 router.use("/ciudades", ciudadesRoutes);
 
+const profileRoutes = require("./profile.routes.js");
+router.use("/profile", profileRoutes);
 
 
 module.exports = router;

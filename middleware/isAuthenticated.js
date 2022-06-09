@@ -7,7 +7,7 @@ const isAuthenticated = expressjwt({
     getToken: (req) => {
 
         if (req.headers === undefined || req.headers.authorization === undefined) {
-            console.log("No hay token");
+            // console.log("No hay token");
             return null;
         }
         //console.log("req: ", req);
@@ -23,11 +23,11 @@ const isAuthenticated = expressjwt({
         // console.log("token: ",token)
 
         if (tokenType !== "Bearer") {
-            console.log("Tipo de token invalido");
+            // console.log("Tipo de token invalido");
             return null;
         }
 
-        console.log("El token fue entregado");
+        // console.log("El token fue entregado");
         return token;
 
     }

@@ -14,13 +14,15 @@ router.post("/signup", async (req,res,next) => {
 
     const { nombre, username, email, password } = req.body;
 
+    // const resVisitados = [];
+    // const resPendientes = [];
+
     //! VALIDACIONES DE BACKEND
     if (!nombre || !username || !email || !password) {
         res.status(400).json({ errorMessage: "Los campos no están completos" });
         return;
     }
 
-    //! NO OLVIDAR VALIDACIONES DE CONTRASEÑA, FORMATO DE EMAIL
 
     try {
         const foundUserEmail = await UserModel.findOne({ email });
@@ -43,7 +45,10 @@ router.post("/signup", async (req,res,next) => {
             nombre,
             username,
             email,
-            password: hashPassowrd
+            password: hashPassowrd,
+            // visitado: resVisitados,
+            // pendiente: resPendientes
+            
         })
 
         res.json("Todo bien, usuario creado");
@@ -110,7 +115,7 @@ router.post("/login", async (req, res, next) => {
 router.get("/verify", isAuthenticated, (req,res,next) => {
     // 1. Checkeamos que el token es valido
     //console.log("payload: ", req.payload); // similar al req.session.user
-    console.log("Pasando por la ruta, todo bien con el middleware");
+    // console.log("Pasando por la ruta, todo bien con el middleware");
 
 
     // 2. Enviar al front end la info del usuario del token
