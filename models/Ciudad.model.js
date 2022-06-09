@@ -15,10 +15,6 @@ const ciudadSchema = new Schema(
             type: String
             
         },
-        restaurantes: [{
-            type: Schema.Types.ObjectId,
-            ref: "restaurante",
-        }]
     }
 );
 
